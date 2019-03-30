@@ -1,0 +1,71 @@
+Authors: Shahar Jacob and Eden Elmaliah
+
+=============================
+=  README for ex12: Four in a row  =
+=============================
+
+==================
+=  Description:  =
+==================
+This exercise contains 4 files:
+1. communicator: auxiliary file provided by the course staff.
+
+2. game: contains a Game class. This class is in charge of all the changes in
+the board dictionary. The functions in this class are checking the board and
+make changes in it when needed.
+Main functions in this class:
+* 'make_move': checks if a move of a player is valid, if it is – puts its disc
+on the board. If not – raise an exception.
+* 'get_winner': checks the current state of the board and returns it. The state
+can be draw, a winner or None (if it's None the game continues). This function
+uses auxiliary functions that checks if there is a sequence of 4 discs of
+the same player in a row, column or a diagonal.
+
+# We want to note that the 'get_winner_seq' was created because it was
+explicitly stated in the forum that 'get_winner' return value should only be
+the game state and nothing farther, that is why they are quite similar.
+
+3. ai: This file contain an Ai class. In this class there is only one function-
+ 'find_legal_move', which checks where the computer can put a disc on the
+ board, and place it. An explanation on are algorithm is in special comments.
+
+4. four_in_a_row: contains a GUI class. This class is in charge of the
+graphics of the game, and operating it as well. It changes the graphic board
+accordingly to the changes in the Game object (a board dictionary).
+Main functions in GUI class:
+* 'motion': this function is in charge of the indicator, which points out the
+column that the user mouse is on.
+* 'put_image': puts a disc on the graphic board, after checking if the move is
+legal, and updates the dictionary board. Uses 'put_image_helper' which is in
+charge of the image placement itself according to the current player (without
+any checkups).
+* 'callback': will be called when the mouse of the current player is clicked
+(will not work if a player clicked his mouse not in his turn). Will call
+'put_image' according to the column the user clicked on.
+* 'play_with_comp': will be called when it's the computer's turn. Uses
+'find_legal_move' from the file ai.py to 'decide' where to put its disc.
+Returns the column of the disc placed.
+
+
+======================
+=  Special Comments  =
+======================
+Efficiency of our 'get_winner' function:
+At first, we thought an empty cell in the board (a Game object) must be 'None',
+that is why we've searched for a winner on the board by turning the board into
+strings and made all kinds of auxiliary functions. Only after we finished the
+functions that finds the winner and marks the winning discs we found out
+what we've missed out.
+It was a lot to change, and that is why this part of our code is a bit messy
+than it can be (we could have mark the players colors with 0 and 1, and an
+empty cell with 2 and make it simpler).
+
+Bonus code:
+We've built functions to help us improve the ai algorithm (the functions are
+in Game class). The functions we've created checks thoroughly the board (rows,
+columns and diagonals) to find if there are 3 discs of the same player placed
+in a way that his next move will make him the winner. This way the computer
+can block the opponent from winning, or alternatively win himself.
+
+
+
